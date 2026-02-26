@@ -66,6 +66,7 @@ export default function FilterBar({ views }: FilterBarProps) {
 
   const resetFilters = () => {
     setFilters([]);
+    setActiveStatus('All');
     setHasUncommitted(false);
   };
 
@@ -76,7 +77,7 @@ export default function FilterBar({ views }: FilterBarProps) {
 
       {/* Filter Bar */}
       <div className="flex items-center gap-2 flex-wrap">
-        {/* Fixed Filter: Status */}
+        {/* Fixed Filter: Status as Segmented Control */}
         <div className="flex items-center bg-slate-100 rounded-lg p-0.5">
           {statusOptions.map(s => (
             <button
@@ -115,19 +116,19 @@ export default function FilterBar({ views }: FilterBarProps) {
           activeFilters={filters.map(f => f.field)}
         />
 
-        {/* Batch commit */}
+        {/* Batch Commit Controls */}
         {hasUncommitted && (
           <>
             <div className="w-px h-6 bg-slate-200" />
             <button
               onClick={applyFilters}
-              className="px-3 py-1 rounded-md text-xs font-semibold bg-brand-900 text-white hover:bg-brand-800 transition-colors cursor-pointer"
+              className="px-3 py-1 rounded-lg text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 transition-colors cursor-pointer shadow-sm"
             >
               Apply Filters
             </button>
             <button
               onClick={resetFilters}
-              className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+              className="flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
             >
               <RotateCcw size={12} />
               Reset

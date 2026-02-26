@@ -30,16 +30,20 @@ interface QuickActionsProps {
 
 export default function QuickActions({ actions }: QuickActionsProps) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-3">
       {actions.map((action) => {
         const Icon = iconMap[action.icon] || Zap;
         return (
           <button
             key={action.label}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-colors shadow-sm cursor-pointer"
+            className="flex items-center gap-2.5 rounded-xl border border-slate-200/60 bg-white px-4 py-2.5 shadow-sm hover:shadow-md hover:border-brand-200 transition-all cursor-pointer group"
           >
-            <Icon size={16} className="text-brand-700" />
-            {action.label}
+            <span className="p-1.5 rounded-lg bg-brand-50 text-brand-600 group-hover:bg-brand-100 transition-colors">
+              <Icon size={14} />
+            </span>
+            <span className="text-[13px] font-medium text-slate-700">
+              {action.label}
+            </span>
           </button>
         );
       })}

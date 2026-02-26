@@ -1,17 +1,27 @@
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import SummaryBar from '../../components/SummaryBar';
 import AlertCard from '../../components/AlertCard';
 import SmallTable from '../../components/SmallTable';
 import PipelineView from '../../components/PipelineView';
 import ActivityFeed from '../../components/ActivityFeed';
 import QuickActions from '../../components/QuickActions';
-import { propertySummary, needsAttention, leasesEndingSoon, vacancyPipeline, recentActivity } from '../../data/properties';
+import AiInsightBanner from '../../components/AiInsightBanner';
+import {
+  propertySummary,
+  needsAttention,
+  leasesEndingSoon,
+  vacancyPipeline,
+  recentActivity,
+} from '../../data/properties';
 
 export default function PropertiesLanding() {
   const summaryItems = [
     { label: 'Total Properties', value: propertySummary.totalProperties, trend: propertySummary.trends.totalProperties },
     { label: 'Active Leases', value: propertySummary.activeLeases, trend: propertySummary.trends.activeLeases },
     { label: 'Vacant Units', value: propertySummary.vacantUnits, trend: propertySummary.trends.vacantUnits },
-    { label: 'Avg Occupancy', value: propertySummary.avgOccupancy, suffix: '%', trend: propertySummary.trends.avgOccupancy },
+    { label: 'Occupancy Rate', value: propertySummary.avgOccupancy, suffix: '%', trend: propertySummary.trends.avgOccupancy },
+    { label: 'Avg Rent', value: '$1,847', trend: 2.1 },
   ];
 
   const leaseColumns = [
@@ -23,7 +33,7 @@ export default function PropertiesLanding() {
       key: 'daysLeft',
       label: 'Days Left',
       render: (val: unknown) => (
-        <span className={`font-medium ${(val as number) <= 20 ? 'text-red-600' : 'text-amber-600'}`}>
+        <span className={`font-medium ${(val as number) <= 20 ? 'text-danger-600' : 'text-amber-600'}`}>
           {val as number}d
         </span>
       ),
@@ -34,7 +44,7 @@ export default function PropertiesLanding() {
       render: (val: unknown) => {
         const s = val as string;
         const colors: Record<string, string> = {
-          'No Renewal': 'bg-red-100 text-red-700',
+          'No Renewal': 'bg-danger-50 text-danger-700',
           'Renewal Sent': 'bg-blue-100 text-blue-700',
           'In Discussion': 'bg-amber-100 text-amber-700',
         };
@@ -56,13 +66,30 @@ export default function PropertiesLanding() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-bold text-slate-900">Properties</h1>
-        <p className="text-sm text-slate-500 mt-0.5">Your property portfolio at a glance</p>
+      {/* Page Header */}
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Properties</h1>
+          <p className="text-sm text-slate-500 mt-1">Your property portfolio at a glance</p>
+        </div>
+        <Link
+          to="/manager/properties/list"
+          className="flex items-center gap-1.5 text-sm font-medium text-brand-700 hover:text-brand-500 transition-colors mt-1"
+        >
+          View All Properties <ArrowRight size={15} />
+        </Link>
       </div>
 
+      {/* AI Insight Banner */}
+      <AiInsightBanner
+        insight="Based on current trends, 4 of your 12 vacant units have been listed for 30+ days without showings. Consider adjusting pricing or refreshing listing photos."
+        type="warning"
+      />
+
+      {/* Summary Bar */}
       <SummaryBar items={summaryItems} />
 
+      {/* Two-Column: Needs Attention + Leases Ending Soon */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <AlertCard title="Needs Attention" items={needsAttention} />
         <SmallTable
@@ -74,16 +101,22 @@ export default function PropertiesLanding() {
         />
       </div>
 
+      {/* Vacancy Pipeline — Full Width */}
       <PipelineView
         title="Vacancy Pipeline"
         stages={vacancyPipeline}
       />
 
+      {/* Two-Column: Activity Feed + Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ActivityFeed title="Recent Activity" items={recentActivity} />
-        <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-slate-900">Quick Actions</h3>
-          <QuickActions actions={quickActions} />
+        <div className="bg-white rounded-xl border border-slate-200/60 shadow-sm overflow-hidden">
+          <div className="px-4 py-3 border-b border-slate-100">
+            <h3 className="text-sm font-semibold text-slate-900">Quick Actions</h3>
+          </div>
+          <div className="p-4">
+            <QuickActions actions={quickActions} />
+          </div>
         </div>
       </div>
     </div>

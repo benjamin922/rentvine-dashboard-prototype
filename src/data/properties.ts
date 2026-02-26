@@ -3,6 +3,7 @@ export const propertySummary = {
   activeLeases: 231,
   vacantUnits: 17,
   avgOccupancy: 93.1,
+  avgRent: 1847,
   trends: {
     totalProperties: 2.4,
     activeLeases: 1.8,

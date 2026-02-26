@@ -4,11 +4,19 @@ import { propertiesListData, savedViews } from '../../data/properties';
 
 export default function PropertiesList() {
   const columns = [
-    { key: 'address', label: 'Address', render: (val: unknown) => <span className="font-medium text-slate-900">{val as string}</span> },
+    {
+      key: 'address',
+      label: 'Address',
+      render: (val: unknown) => <span className="font-medium text-slate-900">{val as string}</span>,
+    },
     { key: 'city', label: 'City' },
     { key: 'state', label: 'State' },
     { key: 'type', label: 'Type' },
-    { key: 'units', label: 'Units' },
+    {
+      key: 'units',
+      label: 'Units',
+      render: (val: unknown) => <span className="tabular-nums">{val as number}</span>,
+    },
     {
       key: 'occupied',
       label: 'Occupied',
@@ -17,9 +25,9 @@ export default function PropertiesList() {
         const total = row.units as number;
         const pct = total > 0 ? Math.round((occupied / total) * 100) : 0;
         return (
-          <span>
+          <span className="tabular-nums">
             {occupied}/{total}{' '}
-            <span className={`text-xs ${pct === 100 ? 'text-green-600' : pct >= 80 ? 'text-amber-600' : 'text-red-600'}`}>
+            <span className={`text-xs ${pct === 100 ? 'text-green-600' : pct >= 80 ? 'text-amber-600' : 'text-danger-600'}`}>
               ({pct}%)
             </span>
           </span>
@@ -48,20 +56,23 @@ export default function PropertiesList() {
     {
       key: 'rent',
       label: 'Avg Rent',
-      render: (val: unknown) => <span>${(val as number).toLocaleString()}</span>,
+      render: (val: unknown) => <span className="tabular-nums">${(val as number).toLocaleString()}</span>,
     },
     { key: 'portfolio', label: 'Portfolio' },
   ];
 
   return (
     <div className="space-y-4">
+      {/* Page Header */}
       <div>
-        <h1 className="text-xl font-bold text-slate-900">All Properties</h1>
-        <p className="text-sm text-slate-500 mt-0.5">Manage and filter your entire property portfolio</p>
+        <h1 className="text-2xl font-bold text-slate-900">All Properties</h1>
+        <p className="text-sm text-slate-500 mt-1">Manage and filter your entire property portfolio</p>
       </div>
 
+      {/* Filter Bar */}
       <FilterBar views={savedViews} />
 
+      {/* Data Table */}
       <DataTable
         columns={columns}
         data={propertiesListData}

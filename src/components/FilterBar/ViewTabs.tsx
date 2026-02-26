@@ -18,14 +18,14 @@ export default function ViewTabs({ views, activeView, onViewChange }: ViewTabsPr
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
 
   return (
-    <div className="flex items-center gap-1 overflow-x-auto pb-1">
+    <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
       {views.map((view) => (
         <div key={view.id} className="relative flex items-center">
           <button
             onClick={() => onViewChange(view.id)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap cursor-pointer ${
               activeView === view.id
-                ? 'bg-brand-900 text-white'
+                ? 'bg-brand-700 text-white shadow-sm'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
@@ -34,19 +34,30 @@ export default function ViewTabs({ views, activeView, onViewChange }: ViewTabsPr
           </button>
           <button
             onClick={() => setMenuOpen(menuOpen === view.id ? null : view.id)}
-            className="p-1 rounded hover:bg-slate-100 -ml-0.5 cursor-pointer"
+            className="p-1 rounded-md hover:bg-slate-100 -ml-0.5 cursor-pointer transition-colors"
           >
             <MoreHorizontal size={14} className="text-slate-400" />
           </button>
           {menuOpen === view.id && (
-            <div className="absolute top-full left-0 mt-1 bg-white rounded-lg border border-slate-200 shadow-lg py-1 z-20 min-w-36">
-              <button className="w-full text-left text-sm px-3 py-1.5 hover:bg-slate-50 text-slate-700 cursor-pointer">Rename</button>
-              <button className="w-full text-left text-sm px-3 py-1.5 hover:bg-slate-50 text-slate-700 cursor-pointer">Duplicate</button>
-              <button className="w-full text-left text-sm px-3 py-1.5 hover:bg-slate-50 text-slate-700 cursor-pointer">Set as Default</button>
-              {!view.isDefault && (
-                <button className="w-full text-left text-sm px-3 py-1.5 hover:bg-slate-50 text-red-600 cursor-pointer">Delete</button>
-              )}
-            </div>
+            <>
+              <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(null)} />
+              <div className="absolute top-full left-0 mt-1 bg-white rounded-xl border border-slate-200 shadow-lg py-1 z-20 min-w-36">
+                <button className="w-full text-left text-sm px-3 py-1.5 hover:bg-slate-50 text-slate-700 cursor-pointer transition-colors">
+                  Rename
+                </button>
+                <button className="w-full text-left text-sm px-3 py-1.5 hover:bg-slate-50 text-slate-700 cursor-pointer transition-colors">
+                  Duplicate
+                </button>
+                <button className="w-full text-left text-sm px-3 py-1.5 hover:bg-slate-50 text-slate-700 cursor-pointer transition-colors">
+                  Set as Default
+                </button>
+                {!view.isDefault && (
+                  <button className="w-full text-left text-sm px-3 py-1.5 hover:bg-danger-50 text-danger-600 cursor-pointer transition-colors">
+                    Delete
+                  </button>
+                )}
+              </div>
+            </>
           )}
         </div>
       ))}

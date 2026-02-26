@@ -26,9 +26,14 @@ export const sampleWidgets = [
   ]},
   { id: 'w6', type: 'line-chart', title: 'Resolution Time Trend (30 Days)', x: 6, y: 2, w: 6, h: 4, data: [
     { day: 'Jan 27', value: 5.1 },
+    { day: 'Jan 31', value: 5.3 },
     { day: 'Feb 3', value: 4.8 },
+    { day: 'Feb 7', value: 4.6 },
     { day: 'Feb 10', value: 4.5 },
+    { day: 'Feb 14', value: 4.7 },
     { day: 'Feb 17', value: 4.9 },
+    { day: 'Feb 19', value: 4.4 },
+    { day: 'Feb 21', value: 4.3 },
     { day: 'Feb 24', value: 4.2 },
   ]},
   { id: 'w7', type: 'table', title: 'My Assigned Work Orders', x: 0, y: 6, w: 7, h: 4, data: [
