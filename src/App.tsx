@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import AppShell from "./components/layout/AppShell";
 import HomePage from "./pages/dashboard/HomePage";
+import DashboardsPage from "./pages/dashboard/DashboardsPage";
 import PropertiesPage from "./pages/properties/PropertiesPage";
 import PropertiesListPage from "./pages/properties/PropertiesListPage";
 import AccountingPage from "./pages/accounting/AccountingPage";
@@ -24,6 +25,7 @@ export default function App() {
     <Routes>
       <Route element={<AppShell />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/dashboards" element={<DashboardsPage />} />
         <Route path="/properties" element={<PropertiesPage />} />
         <Route path="/properties/list" element={<PropertiesListPage />} />
         <Route path="/accounting" element={<AccountingPage />} />
