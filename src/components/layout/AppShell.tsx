@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
+import ChatWidget from "../chat/ChatWidget";
 
 export default function AppShell() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -31,6 +32,9 @@ export default function AppShell() {
           </div>
         </main>
       </div>
+
+      {/* AI Chat Widget */}
+      <ChatWidget />
     </div>
   );
 }
