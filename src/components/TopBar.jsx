@@ -8,7 +8,7 @@ export default function TopBar() {
     <header className="h-12 bg-sidebar flex items-center px-4 border-b border-white/10 flex-shrink-0 z-50">
       {/* Logo */}
       <div className="flex items-center gap-2 w-[200px]">
-        <img src="/assets/rentvine-logo-mark.png" alt="Rentvine" className="h-5 w-5 object-contain" />
+        <img src={`${import.meta.env.BASE_URL}assets/rentvine-logo-mark.png`} alt="Rentvine" className="h-5 w-5 object-contain" />
         <span className="text-white text-base font-semibold tracking-tight">
           rentvine
         </span>
