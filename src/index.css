@@ -1,93 +1,47 @@
 @import "tailwindcss";
-@import "react-grid-layout/css/styles.css";
-@import "react-resizable/css/styles.css";
 
 @theme {
-  --color-rv-green: #03893f;
-  --color-rv-green-light: #EFFAF4;
-  --color-rv-blue: #1473CC;
-  --color-rv-blue-dark: #0B4377;
-  --color-rv-blue-light: #F5F9FC;
-  --color-rv-blue-hover: #D2EBF6;
-  --color-rv-nav-bg: #ECF1F4;
-  --color-rv-gray: #8F8F8F;
-  --color-rv-lightgray: #EAEAEA;
-  --color-rv-red: #db0001;
-  --color-rv-orange: #FFA100;
-  --color-rv-black: #363836;
-}
-
-:root {
-  --rv-green: #03893f;
-  --rv-green-light: #EFFAF4;
-  --rv-blue: #1473CC;
-  --rv-blue-dark: #0B4377;
-  --rv-blue-light: #F5F9FC;
-  --rv-blue-hover: #D2EBF6;
-  --rv-nav-bg: #ECF1F4;
-  --rv-gray: #8F8F8F;
-  --rv-lightgray: #EAEAEA;
-  --rv-red: #db0001;
-  --rv-orange: #FFA100;
-  --rv-black: #363836;
-}
-
-body {
-  margin: 0;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #ECF1F4;
-  color: var(--rv-black);
+  --color-brand: #16a34a;
+  --color-brand-light: #dcfce7;
+  --color-brand-dark: #15803d;
+  --color-sidebar: #1a1f2e;
+  --color-sidebar-hover: #252b3d;
+  --color-sidebar-active: #2d3548;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+  --color-surface: #ffffff;
+  --color-background: #f3f4f6;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* React Grid Layout overrides */
-.react-grid-layout {
-  position: relative;
+body {
+  margin: 0;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f3f4f6;
+  color: #111827;
 }
 
-.react-grid-item {
-  transition: all 200ms ease;
-  transition-property: left, top, width, height;
+#root {
+  min-height: 100vh;
 }
 
-.react-grid-item.cssTransforms {
-  transition-property: transform, width, height;
-}
-
-.react-grid-item.react-draggable-dragging {
-  z-index: 3;
-  will-change: transform;
-  opacity: 0.9;
-}
-
-.react-grid-placeholder {
-  background: var(--rv-blue-hover);
-  opacity: 0.3;
-  border-radius: 12px;
-}
-
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: #d1d5db;
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: #9ca3af;
 }
