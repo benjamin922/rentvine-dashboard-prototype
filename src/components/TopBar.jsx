@@ -52,9 +52,6 @@ export default function TopBar() {
           <Bell size={16} />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-sidebar"></span>
         </button>
-        <button className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
-          <Bell size={16} />
-        </button>
         <div className="ml-2 flex flex-col items-center">
           <div className="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center text-white text-xs font-semibold">
             BN
